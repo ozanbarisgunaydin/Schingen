@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
     
@@ -103,7 +104,7 @@ class RegisterViewController: UIViewController {
         title = "Log In"
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
-        registerButton.addTarget(self, action: #selector(didTaplogInButton), for: .touchUpInside
+        registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside
         )
         emailField.delegate = self
         passwordField.delegate = self
@@ -116,7 +117,7 @@ class RegisterViewController: UIViewController {
         designSubviews()
     }
     
-    @objc private func didTaplogInButton() {
+    @objc private func didTapRegisterButton() {
         
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
@@ -130,7 +131,16 @@ class RegisterViewController: UIViewController {
             
             return
         }
-        //        Firebase Loggin
+        //        Firebase Register
+        
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
+            guard let result = authResult, error == nil else {
+                print("Error creating user register.")
+                return
+            }
+            let user = result.user
+            print("created user \(user)")
+        })
     }
     
     func alertUserLogginError() {
@@ -188,7 +198,7 @@ extension RegisterViewController: UITextFieldDelegate {
         if textField == emailField {
             passwordField.becomeFirstResponder()
         } else if textField == passwordField {
-            didTaplogInButton()
+            didTapRegisterButton()
         }
         return true
     }

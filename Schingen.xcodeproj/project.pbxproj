@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06785505273D08DD00E3449C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06785504273D08DD00E3449C /* GoogleService-Info.plist */; };
 		069CDA4F273C09BA00F16662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA4E273C09BA00F16662 /* AppDelegate.swift */; };
 		069CDA51273C09BA00F16662 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA50273C09BA00F16662 /* SceneDelegate.swift */; };
 		069CDA53273C09BA00F16662 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA52273C09BA00F16662 /* ConversationsViewController.swift */; };
@@ -20,9 +21,11 @@
 		069CDA71273C0EFF00F16662 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */; };
 		069CDA73273C0F1600F16662 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA72273C0F1600F16662 /* ProfileViewController.swift */; };
 		069CDA76273C144C00F16662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA75273C144C00F16662 /* Extensions.swift */; };
+		5E5BFF0137BD345F19F81517 /* Pods_Schingen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED0EB44A986983853B0E809 /* Pods_Schingen.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06785504273D08DD00E3449C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		069CDA4B273C09BA00F16662 /* Schingen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schingen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		069CDA4E273C09BA00F16662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		069CDA50273C09BA00F16662 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,9 @@
 		069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		069CDA72273C0F1600F16662 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		069CDA75273C144C00F16662 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0ED0EB44A986983853B0E809 /* Pods_Schingen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schingen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		880EA4CB60F132843ABB14A0 /* Pods-Schingen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schingen.release.xcconfig"; path = "Target Support Files/Pods-Schingen/Pods-Schingen.release.xcconfig"; sourceTree = "<group>"; };
+		E0CB51966859DC1B157BF17E /* Pods-Schingen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schingen.debug.xcconfig"; path = "Target Support Files/Pods-Schingen/Pods-Schingen.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5BFF0137BD345F19F81517 /* Pods_Schingen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +61,11 @@
 		069CDA42273C09BA00F16662 = {
 			isa = PBXGroup;
 			children = (
+				06785504273D08DD00E3449C /* GoogleService-Info.plist */,
 				069CDA4D273C09BA00F16662 /* Schingen */,
 				069CDA4C273C09BA00F16662 /* Products */,
+				971DB87468366CE0A314FC6C /* Pods */,
+				67E7F16ABEA57D769C726E33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,6 +154,23 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		67E7F16ABEA57D769C726E33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0ED0EB44A986983853B0E809 /* Pods_Schingen.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		971DB87468366CE0A314FC6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0CB51966859DC1B157BF17E /* Pods-Schingen.debug.xcconfig */,
+				880EA4CB60F132843ABB14A0 /* Pods-Schingen.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 069CDA5F273C09BB00F16662 /* Build configuration list for PBXNativeTarget "Schingen" */;
 			buildPhases = (
+				75DD455A7AAEEE05DF892E17 /* [CP] Check Pods Manifest.lock */,
 				069CDA47273C09BA00F16662 /* Sources */,
 				069CDA48273C09BA00F16662 /* Frameworks */,
 				069CDA49273C09BA00F16662 /* Resources */,
+				333610F7C6107253EFDFC423 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,10 +234,53 @@
 				069CDA5B273C09BB00F16662 /* LaunchScreen.storyboard in Resources */,
 				069CDA58273C09BB00F16662 /* Assets.xcassets in Resources */,
 				069CDA56273C09BA00F16662 /* Main.storyboard in Resources */,
+				06785505273D08DD00E3449C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		333610F7C6107253EFDFC423 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Schingen/Pods-Schingen-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Schingen/Pods-Schingen-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Schingen/Pods-Schingen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75DD455A7AAEEE05DF892E17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Schingen-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		069CDA47273C09BA00F16662 /* Sources */ = {
@@ -368,6 +440,7 @@
 		};
 		069CDA60273C09BB00F16662 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0CB51966859DC1B157BF17E /* Pods-Schingen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -399,6 +472,7 @@
 		};
 		069CDA61273C09BB00F16662 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 880EA4CB60F132843ABB14A0 /* Pods-Schingen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
