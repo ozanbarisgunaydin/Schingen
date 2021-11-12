@@ -1,1 +1,2 @@
+${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAppMeasurementIdentitySupport
 ${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAppMeasurement

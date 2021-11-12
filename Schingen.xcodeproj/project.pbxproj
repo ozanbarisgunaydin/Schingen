@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06785505273D08DD00E3449C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06785504273D08DD00E3449C /* GoogleService-Info.plist */; };
+		06785507273D17BE00E3449C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06785506273D17BE00E3449C /* DatabaseManager.swift */; };
 		069CDA4F273C09BA00F16662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA4E273C09BA00F16662 /* AppDelegate.swift */; };
 		069CDA51273C09BA00F16662 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA50273C09BA00F16662 /* SceneDelegate.swift */; };
 		069CDA53273C09BA00F16662 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA52273C09BA00F16662 /* ConversationsViewController.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		06785504273D08DD00E3449C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		06785506273D17BE00E3449C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		069CDA4B273C09BA00F16662 /* Schingen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schingen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		069CDA4E273C09BA00F16662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		069CDA50273C09BA00F16662 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +63,6 @@
 		069CDA42273C09BA00F16662 = {
 			isa = PBXGroup;
 			children = (
-				06785504273D08DD00E3449C /* GoogleService-Info.plist */,
 				069CDA4D273C09BA00F16662 /* Schingen */,
 				069CDA4C273C09BA00F16662 /* Products */,
 				971DB87468366CE0A314FC6C /* Pods */,
@@ -80,6 +81,7 @@
 		069CDA4D273C09BA00F16662 /* Schingen */ = {
 			isa = PBXGroup;
 			children = (
+				06785504273D08DD00E3449C /* GoogleService-Info.plist */,
 				069CDA66273C0D7200F16662 /* Resources */,
 				069CDA65273C0D6900F16662 /* ViewModels */,
 				069CDA64273C0D6100F16662 /* Models */,
@@ -132,6 +134,7 @@
 				069CDA4E273C09BA00F16662 /* AppDelegate.swift */,
 				069CDA50273C09BA00F16662 /* SceneDelegate.swift */,
 				069CDA75273C144C00F16662 /* Extensions.swift */,
+				06785506273D17BE00E3449C /* DatabaseManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				069CDA48273C09BA00F16662 /* Frameworks */,
 				069CDA49273C09BA00F16662 /* Resources */,
 				333610F7C6107253EFDFC423 /* [CP] Embed Pods Frameworks */,
+				86064976E90E47D547EDBCA7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,6 +284,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		86064976E90E47D547EDBCA7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Schingen/Pods-Schingen-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Schingen/Pods-Schingen-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Schingen/Pods-Schingen-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -288,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				069CDA69273C0E8C00F16662 /* LoginViewController.swift in Sources */,
+				06785507273D17BE00E3449C /* DatabaseManager.swift in Sources */,
 				069CDA6B273C0E9C00F16662 /* RegisterViewController.swift in Sources */,
 				069CDA71273C0EFF00F16662 /* NewConversationViewController.swift in Sources */,
 				069CDA53273C09BA00F16662 /* ConversationsViewController.swift in Sources */,

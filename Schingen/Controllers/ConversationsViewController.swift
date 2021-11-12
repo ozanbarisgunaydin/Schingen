@@ -6,28 +6,28 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConversationsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let isLoggedIn = UserDefaults.standard.bool(forKey: "logged_in")
-    
-        if !isLoggedIn {
+        validateAuth()
+    }
+    private func validateAuth() {
+//        İf user not authanticate default screen will be the LoginVC:
+        if FirebaseAuth.Auth.auth().currentUser == nil {
             let loginVC = LoginViewController()
             let navVC = UINavigationController(rootViewController: loginVC)
             navVC.modalPresentationStyle = .fullScreen
             present(navVC, animated: false)
         }
     }
-    
 
 }
 
