@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0609F4D627424F110067C996 /* Pods_Schingen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED0EB44A986983853B0E809 /* Pods_Schingen.framework */; };
+		0644085127442CE000BB69A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0644085027442CE000BB69A5 /* .gitignore */; };
+		065643D32742724D00BC5E34 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065643D22742724D00BC5E34 /* ConversationTableViewCell.swift */; };
+		065643D5274276CD00BC5E34 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065643D4274276CD00BC5E34 /* ConversationModel.swift */; };
+		0658A45A273E6C6C003EED13 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658A459273E6C6C003EED13 /* ChatViewController.swift */; };
+		0658A45C273E81BF003EED13 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658A45B273E81BF003EED13 /* StorageManager.swift */; };
+		0674865027442146006ED4FB /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0674864F27442146006ED4FB /* LocationPickerViewController.swift */; };
 		06785505273D08DD00E3449C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06785504273D08DD00E3449C /* GoogleService-Info.plist */; };
 		06785507273D17BE00E3449C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06785506273D17BE00E3449C /* DatabaseManager.swift */; };
+		06899C7B2743E0C500828BD7 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06899C7A2743E0C500828BD7 /* NewConversationCell.swift */; };
 		069CDA4F273C09BA00F16662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA4E273C09BA00F16662 /* AppDelegate.swift */; };
 		069CDA51273C09BA00F16662 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA50273C09BA00F16662 /* SceneDelegate.swift */; };
 		069CDA53273C09BA00F16662 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA52273C09BA00F16662 /* ConversationsViewController.swift */; };
@@ -22,12 +30,18 @@
 		069CDA71273C0EFF00F16662 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */; };
 		069CDA73273C0F1600F16662 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA72273C0F1600F16662 /* ProfileViewController.swift */; };
 		069CDA76273C144C00F16662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA75273C144C00F16662 /* Extensions.swift */; };
-		5E5BFF0137BD345F19F81517 /* Pods_Schingen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED0EB44A986983853B0E809 /* Pods_Schingen.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0644085027442CE000BB69A5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		065643D22742724D00BC5E34 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		065643D4274276CD00BC5E34 /* ConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
+		0658A459273E6C6C003EED13 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0658A45B273E81BF003EED13 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		0674864F27442146006ED4FB /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		06785504273D08DD00E3449C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06785506273D17BE00E3449C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		06899C7A2743E0C500828BD7 /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
 		069CDA4B273C09BA00F16662 /* Schingen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schingen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		069CDA4E273C09BA00F16662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		069CDA50273C09BA00F16662 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E5BFF0137BD345F19F81517 /* Pods_Schingen.framework in Frameworks */,
+				0609F4D627424F110067C996 /* Pods_Schingen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +102,7 @@
 				069CDA63273C0D5B00F16662 /* Views */,
 				069CDA62273C0D5000F16662 /* Controllers */,
 				069CDA5C273C09BB00F16662 /* Info.plist */,
+				0644085027442CE000BB69A5 /* .gitignore */,
 			);
 			path = Schingen;
 			sourceTree = "<group>";
@@ -101,6 +116,8 @@
 				069CDA6E273C0EDB00F16662 /* VideoPlayerViewController.swift */,
 				069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */,
 				069CDA72273C0F1600F16662 /* ProfileViewController.swift */,
+				0658A459273E6C6C003EED13 /* ChatViewController.swift */,
+				0674864F27442146006ED4FB /* LocationPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -110,6 +127,8 @@
 			children = (
 				069CDA67273C0DA500F16662 /* Storyboards */,
 				069CDA57273C09BB00F16662 /* Assets.xcassets */,
+				065643D22742724D00BC5E34 /* ConversationTableViewCell.swift */,
+				06899C7A2743E0C500828BD7 /* NewConversationCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +136,7 @@
 		069CDA64273C0D6100F16662 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				065643D4274276CD00BC5E34 /* ConversationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,6 +155,7 @@
 				069CDA50273C09BA00F16662 /* SceneDelegate.swift */,
 				069CDA75273C144C00F16662 /* Extensions.swift */,
 				06785506273D17BE00E3449C /* DatabaseManager.swift */,
+				0658A45B273E81BF003EED13 /* StorageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -235,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0644085127442CE000BB69A5 /* .gitignore in Resources */,
 				069CDA5B273C09BB00F16662 /* LaunchScreen.storyboard in Resources */,
 				069CDA58273C09BB00F16662 /* Assets.xcassets in Resources */,
 				069CDA56273C09BA00F16662 /* Main.storyboard in Resources */,
@@ -309,16 +331,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				069CDA69273C0E8C00F16662 /* LoginViewController.swift in Sources */,
+				065643D5274276CD00BC5E34 /* ConversationModel.swift in Sources */,
 				06785507273D17BE00E3449C /* DatabaseManager.swift in Sources */,
+				0674865027442146006ED4FB /* LocationPickerViewController.swift in Sources */,
 				069CDA6B273C0E9C00F16662 /* RegisterViewController.swift in Sources */,
 				069CDA71273C0EFF00F16662 /* NewConversationViewController.swift in Sources */,
 				069CDA53273C09BA00F16662 /* ConversationsViewController.swift in Sources */,
 				069CDA6F273C0EDB00F16662 /* VideoPlayerViewController.swift in Sources */,
 				069CDA76273C144C00F16662 /* Extensions.swift in Sources */,
 				069CDA4F273C09BA00F16662 /* AppDelegate.swift in Sources */,
+				06899C7B2743E0C500828BD7 /* NewConversationCell.swift in Sources */,
 				069CDA73273C0F1600F16662 /* ProfileViewController.swift in Sources */,
 				069CDA51273C09BA00F16662 /* SceneDelegate.swift in Sources */,
+				065643D32742724D00BC5E34 /* ConversationTableViewCell.swift in Sources */,
+				0658A45A273E6C6C003EED13 /* ChatViewController.swift in Sources */,
 				069CDA6D273C0EBC00F16662 /* PhotoViewerViewController.swift in Sources */,
+				0658A45C273E81BF003EED13 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +409,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -402,6 +431,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Debug;
 		};
@@ -442,6 +472,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -453,10 +484,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Release;
 		};
@@ -473,12 +506,14 @@
 				INFOPLIST_FILE = Schingen/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Plase allow acces to select a photo for your profile.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow acces to take a profile picture.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow acces to send audio and video messages.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,6 +524,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Debug;
 		};
@@ -505,12 +541,14 @@
 				INFOPLIST_FILE = Schingen/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Plase allow acces to select a photo for your profile.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow acces to take a profile picture.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow acces to send audio and video messages.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -521,6 +559,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Release;
 		};

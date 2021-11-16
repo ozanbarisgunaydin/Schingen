@@ -7,16 +7,23 @@ target 'Schingen' do
   platform :ios, '14.0'
   inhibit_all_warnings!
 
-# Firebase
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
-
-# Facebook
+pod 'Firebase/Storage'
 pod 'FBSDKLoginKit'
-
-# Google Sign In
-
 pod 'GoogleSignIn','5.0.2'
+pod 'MessageKit'
+pod 'JGProgressHUD'
+pod 'RealmSwift'
+pod 'SDWebImage'
 
+end
+
+post_install do |installer|
+  installer.pods_project.build_configurations.each do |config|
+    if config.name != 'Release'
+      config.build_settings['VALID_ARCHS'] = 'arm64, arm64e, x86_64'
+    end
+  end
 end
