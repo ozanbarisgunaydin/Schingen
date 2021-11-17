@@ -120,7 +120,7 @@ final class RegisterViewController: UIViewController {
         super.viewDidLayoutSubviews()
         designSubviews()
     }
-    
+    /// Registiration with users inputs to Firebase database.
     @objc private func didTapRegisterButton() {
         
         emailField.resignFirstResponder()
@@ -130,15 +130,13 @@ final class RegisterViewController: UIViewController {
 
         
         guard  let firstName = firstNameField.text, let lastName = lastNameField.text, let email = emailField.text, let password = passwordField.text, !email.isEmpty, !password.isEmpty, !firstName.isEmpty, !lastName.isEmpty, password.count >= 6 else {
-            
             alertUserLogginError()
-            
             return
         }
         
         spinner.show(in: view)
-        //        Firebase Register
-        
+
+// MARK: Firebase registiration
         DatabaseManager.shared.userExists(with: email, completion: { [weak self] exist in
             guard let strongSelf = self else { return }
             
@@ -151,7 +149,6 @@ final class RegisterViewController: UIViewController {
                 strongSelf.alertUserLogginError(message: "There is account with this E-mail address already exists.")
                 return
             }
-            
             FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
                 
                 guard authResult != nil, error == nil else {
@@ -166,9 +163,9 @@ final class RegisterViewController: UIViewController {
                 DatabaseManager.shared.insertUser(with: chatUser, completion: { succes in
                     if succes {
 //                        Upload image
-                        guard let image = strongSelf.imageView.image, let data = image.pngData() else {
-                            return
-                        }
+                        guard let image = strongSelf.imageView.image,
+                              let data = image.pngData() else { return }
+                        
                         let fileName = chatUser.profilePictureFileName
                         StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName, completion: { result in
                             switch result {
@@ -201,25 +198,31 @@ final class RegisterViewController: UIViewController {
     @objc private func didTapChangeProfilePic() {
         presentPhotoActionSheet()
     }
-    
+    /// Adding subview into the RegisterVC
     private func addSubviews() {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.systemBackground.cgColor, UIColor.systemMint.cgColor, UIColor.systemBackground.cgColor]
+        
+        view.layer.addSublayer(gradientLayer)
         view.addSubview(scrollView)
+
         scrollView.addSubview(imageView)
         scrollView.addSubview(firstNameField)
         scrollView.addSubview(lastNameField)
         scrollView.addSubview(registerButton)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
-        
+
         imageView.isUserInteractionEnabled = true
         scrollView.isUserInteractionEnabled = true
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
-   
         imageView.addGestureRecognizer(gesture)
 
     }
-    
+    ///  Subview designs for RegisterVC
     private func designSubviews() {
         scrollView.frame = view.bounds
         let size = scrollView.width / 3
@@ -233,11 +236,10 @@ final class RegisterViewController: UIViewController {
         imageView.layer.cornerRadius = imageView.width / 2.0
     }
 }
-
+// MARK: TextField Delegate
 extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if textField == emailField {
             passwordField.becomeFirstResponder()
         } else if textField == passwordField {
@@ -246,10 +248,10 @@ extension RegisterViewController: UITextFieldDelegate {
         return true
     }
 }
-
+// MARK: Image Picker Settings
 extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func presentPhotoActionSheet() {
+    private func presentPhotoActionSheet() {
         let actionSheet = UIAlertController(title: "Profile Picture", message: "How would you like to select a picture?", preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -263,7 +265,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         present(actionSheet, animated: true)
     }
     
-    func presentCamera() {
+    private func presentCamera() {
         let vc = UIImagePickerController()
         vc.sourceType = .camera
         vc.delegate = self
@@ -271,7 +273,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         present(vc, animated: true)
     }
     
-    func presentPhotoPicker() {
+    private func presentPhotoPicker() {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self

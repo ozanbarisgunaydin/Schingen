@@ -37,25 +37,30 @@ final class ConversationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didTapComposeButton))
-        view.addSubview(tableView)
-        view.addSubview(noConverstaionsLabel)
+        addingSubviews()
         setUpTableView()
         startListeningForConversations()
-        
+    
         loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
             guard let strongSelf = self else { return }
             strongSelf.startListeningForConversations()
         })
     }
+    /// Adding subviews and sets up the navbar to the ConversationsVC
+    private func addingSubviews() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didTapComposeButton))
+        view.addSubview(tableView)
+        view.addSubview(noConverstaionsLabel)
+    }
     
+    /// The observers of the conversations
     private func startListeningForConversations(){
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else { return }
         
         if let observer = loginObserver {
             NotificationCenter.default.removeObserver(observer)
         }
-        
+
         print("Starting conversation fetch...")
         let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
         
@@ -63,7 +68,6 @@ final class ConversationsViewController: UIViewController {
             switch result {
             case .success(let conversations):
                 print("Succesfully get conversation models...")
-
                 guard !conversations.isEmpty else {
                     self?.tableView.isHidden = true
                     self?.noConverstaionsLabel.isHidden = false
@@ -85,6 +89,7 @@ final class ConversationsViewController: UIViewController {
         })
     }
     
+    /// The compose button's action function which is the allows users to search the other registered user on the application
     @objc private func didTapComposeButton() {
         let vc = NewConversationViewController()
         vc.completion = { [weak self] result in
@@ -107,14 +112,13 @@ final class ConversationsViewController: UIViewController {
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
     }
-    
+    /// If needed for a new conversations the function provide new chat in the situation of the non-exists conversations.
     private func createNewConversation(result: SearchResult) {
         
         let name = result.name
         let email = DatabaseManager.safeEmail(emailAddress: result.email)
         
 //        Check in database if conversation with current 2 users exits. If it does, reuse conversation ID otherwise, use existing code.
-        
         DatabaseManager.shared.conversationExists(with: email, completion: { [weak self] result in
             guard let strongSelf = self else { return }
             
@@ -137,7 +141,10 @@ final class ConversationsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        addSubViews()
+    }
+    /// Subviews frame and design function for ConversationVC
+    private func addSubViews() {
         tableView.frame = view.bounds
         noConverstaionsLabel.frame = CGRect(x: 10, y: (view.height - 100) / 2, width: view.width - 20, height: 100)
     }
@@ -146,6 +153,7 @@ final class ConversationsViewController: UIViewController {
         super.viewDidAppear(animated)
         validateAuth()
     }
+    
     
     private func validateAuth() {
 //        İf user not authanticate default screen will be the LoginVC:
@@ -163,6 +171,7 @@ final class ConversationsViewController: UIViewController {
     }
 }
 
+// MARK: TableView delegate functions
 extension ConversationsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -209,8 +218,8 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
             tableView.deleteRows(at: [indexPath], with: .left)
             DatabaseManager.shared.deleteConversation(conversationId: conversationId, completion: { success in
                 if !success {
-//                    Add model and row back and show error alert.
-                    
+                    let actionSheet = UIAlertController(title: "Error", message: "Deleting of the conversation is not be succesfull.", preferredStyle: .alert)
+                    actionSheet.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: nil))
                 }
             })
             tableView.endUpdates()

@@ -32,6 +32,14 @@ final class ConversationTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    private let timeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 10, weight: .black)
+//        label.textColor = .systemGray
+        label.numberOfLines = 1
+        return label
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,14 +52,13 @@ final class ConversationTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         giveFrames()
-        
     }
     
     public func configure(with model: Conversation) {
         userMessageLabel.text = model.latestMessage.text
         userNameLabel.text = model.name
+        timeLabel.text = model.latestMessage.date
         
         let path = "images/\(model.otherUserEmail)_profile_picture.png"
         StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
@@ -71,11 +78,13 @@ final class ConversationTableViewCell: UITableViewCell {
         contentView.addSubview(userImageView)
         contentView.addSubview(userNameLabel)
         contentView.addSubview(userMessageLabel)
+        contentView.addSubview(timeLabel)
     }
     
     private func giveFrames() {
         userImageView.frame = CGRect(x: 10, y: 10, width: 70, height: 70)
         userNameLabel.frame = CGRect(x: userImageView.right + 10, y: 10, width: contentView.width - 20 - userImageView.width , height: (contentView.height - 20) / 2)
         userMessageLabel.frame = CGRect(x: userImageView.right + 10, y: userNameLabel.bottom, width: contentView.width - 20 - userImageView.width , height: (contentView.height - 20) / 2)
+        timeLabel.frame = CGRect(x: contentView.width - 80, y: contentView.height / 2, width: 70, height: 15)
     }
 }

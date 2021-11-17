@@ -63,7 +63,7 @@ final class LoginViewController: UIViewController {
     private let logInButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
-        button.backgroundColor = .cyan
+        button.backgroundColor = .systemGreen
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
@@ -93,20 +93,10 @@ final class LoginViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         })
-        
-        
-        
-        title = "Log In"
-        view.backgroundColor = .systemBackground
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
-        logInButton.addTarget(self, action: #selector(didTaplogInButton), for: .touchUpInside
-        )
-        
- 
+    
+        designVC()
         delegatesOfLoginVC()
         addSubviews()
-        
     }
     
     deinit {
@@ -119,6 +109,20 @@ final class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         designSubviews()
     }
+    
+    private func designVC () {
+        title = "Log In"
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.systemBackground.cgColor, UIColor.systemMint.cgColor, UIColor.systemBackground.cgColor]
+        view.layer.addSublayer(gradientLayer)
+        view.backgroundColor = .systemBackground
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
+        logInButton.addTarget(self, action: #selector(didTaplogInButton), for: .touchUpInside
+        )
+    }
+    
     /// Delegate implementions of LoginVC
     private func delegatesOfLoginVC() {
         GIDSignIn.sharedInstance()?.presentingViewController = self

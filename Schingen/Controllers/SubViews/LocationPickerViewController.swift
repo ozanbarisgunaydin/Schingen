@@ -32,13 +32,13 @@ final class LocationPickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(map)
         view.backgroundColor = .systemBackground
         
+// MARK: Provide the coordinates from map to sending location.
         if isPickable {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send",
-                                                                style: .done,
-                                                                target: self,
-                                                                action: #selector(sendButtonTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendButtonTapped))
             map.isUserInteractionEnabled = true
             let gesture = UITapGestureRecognizer(target: self,
                                                  action: #selector(didTapMap(_:)))
@@ -47,34 +47,29 @@ final class LocationPickerViewController: UIViewController {
             map.addGestureRecognizer(gesture)
         }
         else {
-            // just showing location
+// MARK: Just showing location for the location messages. Runs when user tap the location messages.
             guard let coordinates = self.coordinates else {
                 return
             }
-//            Zoom Map
-            print("we are here")
-            let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta:
-            0.01)
+//            Zoom arrangement of Map
+            let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta:0.01)
             let region = MKCoordinateRegion.init(center: coordinates, span: span)
             map.setRegion(region, animated: false)
             map.showsUserLocation = true
             
-            // drop a pin on that location
+//          Droping a pin on selected location.
             let pin = MKPointAnnotation()
             pin.coordinate = coordinates
             map.addAnnotation(pin)
         }
-        view.addSubview(map)
     }
-
+    /// Send button actions provided.
     @objc func sendButtonTapped() {
-        guard let coordinates = coordinates else {
-            return
-        }
+        guard let coordinates = coordinates else { return }
         navigationController?.popViewController(animated: true)
         completion?(coordinates)
     }
-
+    /// Map taping actions provided.
     @objc func didTapMap(_ gesture: UITapGestureRecognizer) {
         let locationInView = gesture.location(in: map)
         let coordinates = map.convert(locationInView, toCoordinateFrom: map)
@@ -83,7 +78,6 @@ final class LocationPickerViewController: UIViewController {
         for annotation in map.annotations {
             map.removeAnnotation(annotation)
         }
-
         // drop a pin on that location
         let pin = MKPointAnnotation()
         pin.coordinate = coordinates

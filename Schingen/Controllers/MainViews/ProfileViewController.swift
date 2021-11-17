@@ -40,11 +40,10 @@ final class ProfileViewController: UIViewController {
         data.append(ProfileViewModel(viewModelType: .info, title: "Name: \(UserDefaults.standard.value(forKey: "name") as? String ?? "Undefined Name")", handler: nil))
         data.append(ProfileViewModel(viewModelType: .info, title: "Email: \(UserDefaults.standard.value(forKey: "email") as? String ?? "Undefined Email")", handler: nil))
         data.append(ProfileViewModel(viewModelType: .logOut, title: "Log Out", handler: { [weak self] in
-            
             guard let strongSelf = self else { return }
             
             let actionSheet = UIAlertController(title: "Log Out", message: "If you want to log out from current user please tap the Log Out button.", preferredStyle: .alert)
-            actionSheet.addAction(UIAlertAction(title: "Log Out.", style: .destructive, handler: { [weak self] _ in
+            actionSheet.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { [weak self] _ in
                 guard let strongSelf = self else { return }
                 
                 UserDefaults.standard.set(nil, forKey: "email")

@@ -67,6 +67,5 @@ final class NewConversationCell: UITableViewCell {
     private func giveFrames() {
         userImageView.frame = CGRect(x: 10, y: 10, width: 70, height: 70)
         userNameLabel.frame = CGRect(x: userImageView.right + 10, y: 20, width: contentView.width - 20 - userImageView.width , height: 50)
-        
     }
 }

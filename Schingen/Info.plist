@@ -64,5 +64,10 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>logoForLaunch</string>
+	</dict>
 </dict>
 </plist>

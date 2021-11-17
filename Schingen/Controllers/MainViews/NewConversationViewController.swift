@@ -46,25 +46,26 @@ final class NewConversationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        searchBar.delegate = self
         searchBar.becomeFirstResponder()
         
+        provideDelegates()
         configureView()
         navBarDesign()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         provideFrames()
-        
     }
     
     @objc private func dismissSelf() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func provideDelegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
     }
     
     private func provideFrames() {
@@ -94,9 +95,7 @@ extension NewConversationViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = results[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: NewConversationCell.identifier, for: indexPath) as! NewConversationCell
-        
         cell.configure(with: model)
-        
         return cell
     }
     
