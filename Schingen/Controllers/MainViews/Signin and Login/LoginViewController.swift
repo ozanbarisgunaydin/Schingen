@@ -11,7 +11,8 @@ import FBSDKLoginKit
 import GoogleSignIn
 import JGProgressHUD
 
-class LoginViewController: UIViewController {
+/// Controller for the exist users to log in to application of  Schingen.
+final class LoginViewController: UIViewController {
     
     private let spinner = JGProgressHUD(style: .dark)
     
@@ -62,7 +63,7 @@ class LoginViewController: UIViewController {
     private let logInButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
-        button.backgroundColor = .link
+        button.backgroundColor = .cyan
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
@@ -72,6 +73,11 @@ class LoginViewController: UIViewController {
     
     private let facebookLoginButton: FBLoginButton = {
         let button = FBLoginButton()
+        button.backgroundColor = .link
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 2
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.permissions = ["email","public_profile"]
         return button
     }()
@@ -88,7 +94,7 @@ class LoginViewController: UIViewController {
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         })
         
-        GIDSignIn.sharedInstance()?.presentingViewController = self
+        
         
         title = "Log In"
         view.backgroundColor = .systemBackground
@@ -97,11 +103,8 @@ class LoginViewController: UIViewController {
         logInButton.addTarget(self, action: #selector(didTaplogInButton), for: .touchUpInside
         )
         
-        emailField.delegate = self
-        passwordField.delegate = self
-        
-        facebookLoginButton.delegate = self
-        
+ 
+        delegatesOfLoginVC()
         addSubviews()
         
     }
@@ -116,9 +119,15 @@ class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         designSubviews()
     }
-    
+    /// Delegate implementions of LoginVC
+    private func delegatesOfLoginVC() {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        emailField.delegate = self
+        passwordField.delegate = self
+        facebookLoginButton.delegate = self
+    }
+    /// Main function of LoginVC which is manage the login the users with informations of Firebase.
     @objc private func didTaplogInButton() {
-        
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
         
@@ -129,7 +138,7 @@ class LoginViewController: UIViewController {
         
         spinner.show(in: view)
         
-//        Firebase Loggin
+// MARK:       Firebase Loggin
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: {[weak self] authResult, error in
             
             guard let strongSelf = self else { return }
@@ -163,7 +172,7 @@ class LoginViewController: UIViewController {
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         })
     }
-    
+    /// Alert of the users login errors
     func alertUserLogginError() {
         let alert = UIAlertController(title: "Error", message: "Please enter all information to log in.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
@@ -175,7 +184,7 @@ class LoginViewController: UIViewController {
         vc.title = "Create Account"
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+    /// Addsubviews for LoginVC
     private func addSubviews() {
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
@@ -186,7 +195,8 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(googleLogInButton)
 
     }
-    
+    // MARK: Frame settings
+    /// Subviews of LoginVC frame settings
     private func designSubviews() {
         scrollView.frame = view.bounds
         let size = scrollView.width / 3
@@ -194,8 +204,9 @@ class LoginViewController: UIViewController {
         emailField.frame = CGRect(x: 30, y: imageView.bottom + 10, width: scrollView.width - 60, height: 52)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width - 60, height: 52)
         logInButton.frame = CGRect(x: 30, y: passwordField.bottom + 10, width: scrollView.width - 60, height: 52)
-        facebookLoginButton.frame = CGRect(x: 30, y: logInButton.bottom + 10, width: scrollView.width - 60, height: 52)
-        googleLogInButton.frame = CGRect(x: 30, y: facebookLoginButton.bottom + 10, width: scrollView.width - 60, height: 52)
+        facebookLoginButton.frame = CGRect(x: 40, y: logInButton.bottom + size, width: scrollView.width - 80, height: 42)
+        googleLogInButton.frame = CGRect(x: 35, y: facebookLoginButton.bottom + 10, width: scrollView.width - 70, height: 42)
+
     }
 }
 

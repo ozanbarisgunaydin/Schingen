@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
+/// This controller manage the location messages for the pick coordinates from map and shows the exist coordinates which is came from messages on map
 final class LocationPickerViewController: UIViewController {
 
     public var completion: ((CLLocationCoordinate2D) -> Void)?

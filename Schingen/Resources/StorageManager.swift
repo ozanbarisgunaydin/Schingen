@@ -9,10 +9,13 @@ import Foundation
 import FirebaseStorage
 import RealmSwift
 
+/// Allows to get fetch and upload files to Firebase storage.
 final class StorageManager {
     
+    /// Shared instance of class (singleton)
     static let shared = StorageManager()
-    
+    //    Added for the not instanciate multiple instances.
+    private init(){}
     private let storage = Storage.storage().reference()
 /*
  /images/ozangunaydin61-gmail-com_profile_picture.png
@@ -21,7 +24,9 @@ final class StorageManager {
 
     /// Uploads picture to Firebase Storage and returns URLString to download.
     public func uploadProfilePicture(with data: Data, fileName: String, completion: @escaping UploadPictureCompletion) {
-        storage.child("images/\(fileName)").putData(data, metadata: nil, completion: { metadata, error in
+        storage.child("images/\(fileName)").putData(data, metadata: nil, completion: { [weak self] metadata, error in
+            guard let strongSelf = self else { return }
+            
             guard error == nil else {
 //                failed
                 print("Failed to upload data to Firebase for picture.")
@@ -29,7 +34,7 @@ final class StorageManager {
                 return
             }
             
-            self.storage.child("images/\(fileName)").downloadURL(completion: { url, error in
+            strongSelf.storage.child("images/\(fileName)").downloadURL(completion: { url, error in
                 guard let url = url else {
                     print("Failde to get download URL.")
                     completion(.failure(StorageErrors.failedToDownloadToURL))

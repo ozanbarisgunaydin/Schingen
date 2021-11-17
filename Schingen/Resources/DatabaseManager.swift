@@ -11,24 +11,26 @@ import MessageKit
 import CoreLocation
 
 //Singleton:
-
+///  This manager object use for write and read data in realtime Firebase Database
 final class DatabaseManager {
-    static let shared = DatabaseManager()
     
+    /// Shared instance of class (singleton)
+    static let shared = DatabaseManager()
     private let database = Database.database().reference()
+//    Added for the not instanciate multiple instances.
+    private init() {}
     
     static func safeEmail(emailAddress: String) -> String {
         var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
-    
 }
 
 extension DatabaseManager {
-    
+    /// Returns dicitionary node at child path
     public func getDataFor(path: String, completion: @escaping (Result<Any, Error>) -> Void) {
-        self.database.child("\(path)").observeSingleEvent(of: .value) { snapshot in
+        database.child("\(path)").observeSingleEvent(of: .value) { snapshot in
             guard let value = snapshot.value else {
                 completion(.failure(DatabaseError.failedToFetch))
                 return
@@ -41,7 +43,10 @@ extension DatabaseManager {
 //MARK: - Account Management
 
 extension DatabaseManager {
-    /// Checking the user E-mail
+    /// Checking the user existance with given E-mail
+    ///Parameters
+    /// -`email`:            Target email to be checked.
+    ///-`completion`:   Async closure to return with result.
     public func userExists(with email: String, completion: @escaping ((Bool) -> Void)) {
         
         let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
@@ -61,14 +66,16 @@ extension DatabaseManager {
         database.child(user.safeEmail).setValue([
             "first_name" : user.firstName,
             "last_name" : user.lastName
-        ], withCompletionBlock: { error, _ in
+        ], withCompletionBlock: { [weak self] error, _ in
+            guard let strongSelf = self else { return }
+            
             guard error == nil else {
                 print("Failed to write to FireBase DataBase.")
                 completion(false)
                 return
             }
             
-            self.database.child("users").observeSingleEvent(of: .value, with: { snapshot in
+            strongSelf.database.child("users").observeSingleEvent(of: .value, with: { snapshot in
                 if var usersCollection = snapshot.value as? [[String : String]] {
 //                    append to user dict.
                     let newElement = [
@@ -77,7 +84,7 @@ extension DatabaseManager {
                         ]
                     usersCollection.append(newElement)
                     
-                    self.database.child("users").setValue(usersCollection, withCompletionBlock: { error, _ in
+                    strongSelf.database.child("users").setValue(usersCollection, withCompletionBlock: { error, _ in
                         guard error == nil else {
                             completion(false)
                             return
@@ -93,7 +100,7 @@ extension DatabaseManager {
                             "email": user.safeEmail
                         ]
                     ]
-                    self.database.child("users").setValue(newCollection, withCompletionBlock: { error, _ in
+                    strongSelf.database.child("users").setValue(newCollection, withCompletionBlock: { error, _ in
                         guard error == nil else {
                             completion(false)
                             return
@@ -104,7 +111,7 @@ extension DatabaseManager {
             })
         })
     }
-    
+    /// Gets all users from database.
     public func getAllUsers(completion: @escaping (Result<[[String : String]], Error>) -> Void) {
         
         database.child("users").observeSingleEvent(of: .value, with: { snapshot in
@@ -118,6 +125,13 @@ extension DatabaseManager {
     
     public enum DatabaseError: Error {
         case failedToFetch
+        
+        public var localizedDescription: String {
+            switch self {
+            case .failedToFetch:
+                return "This means blah error"
+            }
+        }
     }
 }
 
@@ -229,6 +243,7 @@ extension DatabaseManager {
         })
     }
     
+    /// Finish the creating conversations for the creating stage.
     private func finishCreatingConversation(name: String, conversationID: String, firstMessage: Message, completion: @escaping (Bool) -> Void ) {
         
         let messageDate = firstMessage.sentDate
@@ -275,7 +290,7 @@ extension DatabaseManager {
             "name" : name
         ]
         
-        print("adding convo: \(conversationID)")
+        print("Adding conversation with path of: \(conversationID)")
         
         let value: [String : Any] = [
             "messages" : [
@@ -384,9 +399,7 @@ extension DatabaseManager {
     /// Send a messages to the chosen user conversations and message.
     public func sendMessage(to conversation: String, otherUserEmail: String, name: String, newMessage: Message, completion: @escaping (Bool) -> Void) {
 //        Add new messasge to messages.
-        
 //        Update sender latest message.
-        
 //        Update recipient latests message.
         guard let ownerEmail = UserDefaults.standard.value(forKey: "email") as? String else {
             completion(false)
@@ -585,6 +598,7 @@ extension DatabaseManager {
         })
     }
     
+    /// Deleting conversation from database.
     public func deleteConversation(conversationId: String, completion: @escaping (Bool) -> Void) {
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return
@@ -620,6 +634,7 @@ extension DatabaseManager {
         }
     }
     
+    /// Determine the chat exitance.
     public func conversationExists(with targetRecipientEmail: String, completion: @escaping (Result<String, Error>) -> Void){
         let safeRecipientEmail = DatabaseManager.safeEmail(emailAddress: targetRecipientEmail)
         guard let senderEmail = UserDefaults.standard.value(forKey: "email") as? String else {
@@ -632,7 +647,7 @@ extension DatabaseManager {
                 completion(.failure(DatabaseError.failedToFetch))
                 return
             }
-//            İterate and find conversation with target sender.
+//            Iterate and find conversation with target sender.
             if let conversation = collection.first(where: {
                 guard let targetSenderEmail = $0["other_user_email"] as? String else {
                     return false
@@ -650,22 +665,5 @@ extension DatabaseManager {
             completion(.failure(DatabaseError.failedToFetch))
             return
         })
-    }
-    
-}
-
-struct SchingenUser {
-    let firstName: String
-    let lastName: String
-    let emailAddress: String
-    
-    var safeEmail: String {
-        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
-        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
-        return safeEmail
-    }
-    var profilePictureFileName: String {
-//        blabla-gmail-com_profile_picture.png
-        return "\(safeEmail)_profile_picture.png"
     }
 }

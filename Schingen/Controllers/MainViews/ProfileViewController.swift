@@ -11,26 +11,31 @@ import FBSDKLoginKit
 import GoogleSignIn
 import SDWebImage
 
-enum ProfileViewModelType {
-    case info, logOut
-}
-
-struct ProfileViewModel {
-    let viewModelType: ProfileViewModelType
-    let title: String
-    let handler: (() -> Void)?
-}
-
-class ProfileViewController: UIViewController {
+/// Controller for the profile of users
+final class ProfileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    private let imageView = UIImageView()
+    private let headerView = UIView()
     
     var data = [ProfileViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        profileTableViewConfigure()
+        signOutFromProfile()
+    }
+    
+    /// Profile table view properties
+    private func profileTableViewConfigure() {
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableHeaderView = createTableHeader()
+    }
+    
+    /// Function for the log out of current user
+    private func signOutFromProfile() {
         
         data.append(ProfileViewModel(viewModelType: .info, title: "Name: \(UserDefaults.standard.value(forKey: "name") as? String ?? "Undefined Name")", handler: nil))
         data.append(ProfileViewModel(viewModelType: .info, title: "Email: \(UserDefaults.standard.value(forKey: "email") as? String ?? "Undefined Email")", handler: nil))
@@ -38,12 +43,16 @@ class ProfileViewController: UIViewController {
             
             guard let strongSelf = self else { return }
             
-            let actionSheet = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+            let actionSheet = UIAlertController(title: "Log Out", message: "If you want to log out from current user please tap the Log Out button.", preferredStyle: .alert)
             actionSheet.addAction(UIAlertAction(title: "Log Out.", style: .destructive, handler: { [weak self] _ in
                 guard let strongSelf = self else { return }
                 
-                FBSDKLoginKit.LoginManager().logOut()
+                UserDefaults.standard.set(nil, forKey: "email")
+                UserDefaults.standard.set(nil, forKey: "name")
                 
+//                Facebook sign out.
+                FBSDKLoginKit.LoginManager().logOut()
+//                Google sign out.
                 GIDSignIn.sharedInstance().signOut()
                 
                 do {
@@ -59,32 +68,24 @@ class ProfileViewController: UIViewController {
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             strongSelf.present(actionSheet, animated: true)
         }))
-
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableHeaderView = createTableHeader()
-        
     }
-    
-    func createTableHeader() -> UIView? {
+    ///  Header of the profile view's table view
+    private func createTableHeader() -> UIView? {
         
-        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
-            return nil
-        }
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else { return nil }
         
         let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
         let fileName = safeEmail + "_profile_picture.png"
-        
         let path = "images/"+fileName
         
+        // MARK: Frame Settings for Views of ProfileVC
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 300))
-        
-        headerView.backgroundColor = .link
-        
-        let imageView = UIImageView(frame: CGRect(x: (headerView.width - 150) / 2, y: 75, width: 150, height: 150))
-        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = headerView.bounds
+        gradientLayer.colors = [UIColor.systemBackground.cgColor, UIColor.systemMint.cgColor, UIColor.systemBackground.cgColor]
+        headerView.layer.addSublayer(gradientLayer)
+    
+        let imageView = UIImageView(frame: CGRect(x: (headerView.width - 300) / 2, y: 0, width: 300, height: 300))
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .white
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -98,18 +99,23 @@ class ProfileViewController: UIViewController {
             case .success(let url):
                 imageView.sd_setImage(with: url, completed: nil)
             case .failure(let error):
+                imageView.image = UIImage(systemName: "person.circle")
                 print("Failed to get download url: \(error)")
             }
         })
         return headerView
     }
 }
-
-
+// MARK: Profile Table Settings:
+/// Profile view tableview apperance settings
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,7 +131,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-class ProfileTableViewCell: UITableViewCell {
+// MARK: Profile View Cell
+///  Simple cell class of the profile view
+final class ProfileTableViewCell: UITableViewCell {
     
     static let identifier = "ProfileTableViewCell"
     
@@ -135,11 +143,11 @@ class ProfileTableViewCell: UITableViewCell {
         
         switch viewModel.viewModelType {
         case .info:
-            self.textLabel?.textAlignment = .left
-            self.selectionStyle = .none
+            textLabel?.textAlignment = .center
+            selectionStyle = .none
         case .logOut:
-            self.textLabel?.textColor = .red
-            self.textLabel?.textAlignment = .center
+            textLabel?.textColor = .red
+            textLabel?.textAlignment = .center
         }
     }
 }

@@ -9,7 +9,8 @@ import UIKit
 import SDWebImage
 import SwiftUI
 
-class PhotoViewerViewController: UIViewController {
+/// Controller for showing images on the other view for detail views.
+final class PhotoViewerViewController: UIViewController {
 
     private let url : URL
     
@@ -35,7 +36,7 @@ class PhotoViewerViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         view.addSubview(imageView)
         view.backgroundColor = .black
-        imageView.sd_setImage(with: self.url, completed: nil)
+        imageView.sd_setImage(with: url, completed: nil)
     }
     
     override func viewDidLayoutSubviews() {

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0609F4D627424F110067C996 /* Pods_Schingen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED0EB44A986983853B0E809 /* Pods_Schingen.framework */; };
 		0644085127442CE000BB69A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0644085027442CE000BB69A5 /* .gitignore */; };
+		06447ECA2745356500B2EF40 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06447EC92745356500B2EF40 /* ChatModels.swift */; };
+		06447ECC274535AD00B2EF40 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06447ECB274535AD00B2EF40 /* SearchResults.swift */; };
+		06447ECE2745365000B2EF40 /* ProfileModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06447ECD2745365000B2EF40 /* ProfileModels.swift */; };
+		06447ED3274541AE00B2EF40 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06447ED2274541AE00B2EF40 /* UserModel.swift */; };
 		065643D32742724D00BC5E34 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065643D22742724D00BC5E34 /* ConversationTableViewCell.swift */; };
 		065643D5274276CD00BC5E34 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065643D4274276CD00BC5E34 /* ConversationModel.swift */; };
 		0658A45A273E6C6C003EED13 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658A459273E6C6C003EED13 /* ChatViewController.swift */; };
@@ -26,7 +30,6 @@
 		069CDA69273C0E8C00F16662 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA68273C0E8C00F16662 /* LoginViewController.swift */; };
 		069CDA6B273C0E9C00F16662 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA6A273C0E9C00F16662 /* RegisterViewController.swift */; };
 		069CDA6D273C0EBC00F16662 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA6C273C0EBC00F16662 /* PhotoViewerViewController.swift */; };
-		069CDA6F273C0EDB00F16662 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA6E273C0EDB00F16662 /* VideoPlayerViewController.swift */; };
 		069CDA71273C0EFF00F16662 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */; };
 		069CDA73273C0F1600F16662 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA72273C0F1600F16662 /* ProfileViewController.swift */; };
 		069CDA76273C144C00F16662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDA75273C144C00F16662 /* Extensions.swift */; };
@@ -34,6 +37,10 @@
 
 /* Begin PBXFileReference section */
 		0644085027442CE000BB69A5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		06447EC92745356500B2EF40 /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
+		06447ECB274535AD00B2EF40 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		06447ECD2745365000B2EF40 /* ProfileModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModels.swift; sourceTree = "<group>"; };
+		06447ED2274541AE00B2EF40 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		065643D22742724D00BC5E34 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		065643D4274276CD00BC5E34 /* ConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		0658A459273E6C6C003EED13 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -53,7 +60,6 @@
 		069CDA68273C0E8C00F16662 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		069CDA6A273C0E9C00F16662 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		069CDA6C273C0EBC00F16662 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
-		069CDA6E273C0EDB00F16662 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		069CDA72273C0F1600F16662 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		069CDA75273C144C00F16662 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -74,6 +80,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06447ECF2745403600B2EF40 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				065643D22742724D00BC5E34 /* ConversationTableViewCell.swift */,
+				06899C7A2743E0C500828BD7 /* NewConversationCell.swift */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
+		06447ED02745407F00B2EF40 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				069CDA52273C09BA00F16662 /* ConversationsViewController.swift */,
+				069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */,
+				069CDA72273C0F1600F16662 /* ProfileViewController.swift */,
+				0658A459273E6C6C003EED13 /* ChatViewController.swift */,
+				069CDA74273C100100F16662 /* Signin and Login */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		06447ED12745409F00B2EF40 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				069CDA6C273C0EBC00F16662 /* PhotoViewerViewController.swift */,
+				0674864F27442146006ED4FB /* LocationPickerViewController.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		069CDA42273C09BA00F16662 = {
 			isa = PBXGroup;
 			children = (
@@ -110,14 +146,8 @@
 		069CDA62273C0D5000F16662 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				069CDA52273C09BA00F16662 /* ConversationsViewController.swift */,
-				069CDA74273C100100F16662 /* Login */,
-				069CDA6C273C0EBC00F16662 /* PhotoViewerViewController.swift */,
-				069CDA6E273C0EDB00F16662 /* VideoPlayerViewController.swift */,
-				069CDA70273C0EFF00F16662 /* NewConversationViewController.swift */,
-				069CDA72273C0F1600F16662 /* ProfileViewController.swift */,
-				0658A459273E6C6C003EED13 /* ChatViewController.swift */,
-				0674864F27442146006ED4FB /* LocationPickerViewController.swift */,
+				06447ED12745409F00B2EF40 /* SubViews */,
+				06447ED02745407F00B2EF40 /* MainViews */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,10 +155,9 @@
 		069CDA63273C0D5B00F16662 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				069CDA67273C0DA500F16662 /* Storyboards */,
 				069CDA57273C09BB00F16662 /* Assets.xcassets */,
-				065643D22742724D00BC5E34 /* ConversationTableViewCell.swift */,
-				06899C7A2743E0C500828BD7 /* NewConversationCell.swift */,
+				069CDA67273C0DA500F16662 /* Storyboards */,
+				06447ECF2745403600B2EF40 /* TableCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,6 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				065643D4274276CD00BC5E34 /* ConversationModel.swift */,
+				06447EC92745356500B2EF40 /* ChatModels.swift */,
+				06447ECB274535AD00B2EF40 /* SearchResults.swift */,
+				06447ED2274541AE00B2EF40 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +176,7 @@
 		069CDA65273C0D6900F16662 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				06447ECD2745365000B2EF40 /* ProfileModels.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -169,13 +202,13 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		069CDA74273C100100F16662 /* Login */ = {
+		069CDA74273C100100F16662 /* Signin and Login */ = {
 			isa = PBXGroup;
 			children = (
 				069CDA68273C0E8C00F16662 /* LoginViewController.swift */,
 				069CDA6A273C0E9C00F16662 /* RegisterViewController.swift */,
 			);
-			path = Login;
+			path = "Signin and Login";
 			sourceTree = "<group>";
 		};
 		67E7F16ABEA57D769C726E33 /* Frameworks */ = {
@@ -208,6 +241,7 @@
 				069CDA49273C09BA00F16662 /* Resources */,
 				333610F7C6107253EFDFC423 /* [CP] Embed Pods Frameworks */,
 				86064976E90E47D547EDBCA7 /* [CP] Copy Pods Resources */,
+				0667776E27451085003303DD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -267,6 +301,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0667776E27451085003303DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		333610F7C6107253EFDFC423 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,19 +386,22 @@
 				069CDA69273C0E8C00F16662 /* LoginViewController.swift in Sources */,
 				065643D5274276CD00BC5E34 /* ConversationModel.swift in Sources */,
 				06785507273D17BE00E3449C /* DatabaseManager.swift in Sources */,
+				06447ECA2745356500B2EF40 /* ChatModels.swift in Sources */,
 				0674865027442146006ED4FB /* LocationPickerViewController.swift in Sources */,
 				069CDA6B273C0E9C00F16662 /* RegisterViewController.swift in Sources */,
 				069CDA71273C0EFF00F16662 /* NewConversationViewController.swift in Sources */,
 				069CDA53273C09BA00F16662 /* ConversationsViewController.swift in Sources */,
-				069CDA6F273C0EDB00F16662 /* VideoPlayerViewController.swift in Sources */,
 				069CDA76273C144C00F16662 /* Extensions.swift in Sources */,
 				069CDA4F273C09BA00F16662 /* AppDelegate.swift in Sources */,
 				06899C7B2743E0C500828BD7 /* NewConversationCell.swift in Sources */,
+				06447ECC274535AD00B2EF40 /* SearchResults.swift in Sources */,
+				06447ECE2745365000B2EF40 /* ProfileModels.swift in Sources */,
 				069CDA73273C0F1600F16662 /* ProfileViewController.swift in Sources */,
 				069CDA51273C09BA00F16662 /* SceneDelegate.swift in Sources */,
 				065643D32742724D00BC5E34 /* ConversationTableViewCell.swift in Sources */,
 				0658A45A273E6C6C003EED13 /* ChatViewController.swift in Sources */,
 				069CDA6D273C0EBC00F16662 /* PhotoViewerViewController.swift in Sources */,
+				06447ED3274541AE00B2EF40 /* UserModel.swift in Sources */,
 				0658A45C273E81BF003EED13 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +557,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 225AXALHQ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Schingen/Info.plist;

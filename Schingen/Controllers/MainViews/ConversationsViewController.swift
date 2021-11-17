@@ -8,9 +8,9 @@
 import UIKit
 import FirebaseAuth
 import JGProgressHUD
-import simd
 
-class ConversationsViewController: UIViewController {
+/// Controller that shows list of conversations
+final class ConversationsViewController: UIViewController {
     
     private let spinner = JGProgressHUD(style: .dark)
     
@@ -41,14 +41,12 @@ class ConversationsViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(noConverstaionsLabel)
         setUpTableView()
-        fetchConverstaions()
         startListeningForConversations()
         
         loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
             guard let strongSelf = self else { return }
             strongSelf.startListeningForConversations()
         })
-        
     }
     
     private func startListeningForConversations(){
@@ -66,7 +64,13 @@ class ConversationsViewController: UIViewController {
             case .success(let conversations):
                 print("Succesfully get conversation models...")
 
-                guard !conversations.isEmpty else { return }
+                guard !conversations.isEmpty else {
+                    self?.tableView.isHidden = true
+                    self?.noConverstaionsLabel.isHidden = false
+                    return
+                }
+                self?.noConverstaionsLabel.isHidden = true
+                self?.tableView.isHidden = false
                 self?.conversations = conversations
                 
                 DispatchQueue.main.async {
@@ -74,6 +78,8 @@ class ConversationsViewController: UIViewController {
                 }
                 
             case .failure(let error):
+                self?.tableView.isHidden = true
+                self?.noConverstaionsLabel.isHidden = false
                 print("Failed to get conversations: \(error) -startListeninForConersations()")
             }
         })
@@ -133,6 +139,7 @@ class ConversationsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         tableView.frame = view.bounds
+        noConverstaionsLabel.frame = CGRect(x: 10, y: (view.height - 100) / 2, width: view.width - 20, height: 100)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -153,10 +160,6 @@ class ConversationsViewController: UIViewController {
     private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    private func fetchConverstaions() {
-        tableView.isHidden = false
     }
 }
 
@@ -186,7 +189,7 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 90
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -194,22 +197,20 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        print("1")
         return .delete
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("2")
-
 //            Began delete
             let conversationId = conversations[indexPath.row].id
             tableView.beginUpdates()
-            
-            DatabaseManager.shared.deleteConversation(conversationId: conversationId, completion: { [weak self] success in
-                if success {
-                    self?.conversations.remove(at: indexPath.row)
-                    self?.tableView.deleteRows(at: [indexPath], with: .left)
+            self.conversations.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            DatabaseManager.shared.deleteConversation(conversationId: conversationId, completion: { success in
+                if !success {
+//                    Add model and row back and show error alert.
+                    
                 }
             })
             tableView.endUpdates()

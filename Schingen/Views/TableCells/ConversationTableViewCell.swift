@@ -8,27 +8,27 @@
 import UIKit
 import SDWebImage
 
-class ConversationTableViewCell: UITableViewCell {
+final class ConversationTableViewCell: UITableViewCell {
     
     static let identifier = "ConversationTableViewCell"
     
     private let userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 50
+        imageView.layer.cornerRadius = 35
         imageView.layer.masksToBounds = true
         return imageView
     }()
     
     private let userNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 21, weight: .semibold)
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
     
     private let userMessageLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 19, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .thin)
         label.numberOfLines = 0
         return label
     }()
@@ -50,8 +50,8 @@ class ConversationTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: Conversation) {
-        self.userMessageLabel.text = model.latestMessage.text
-        self.userNameLabel.text = model.name
+        userMessageLabel.text = model.latestMessage.text
+        userNameLabel.text = model.name
         
         let path = "images/\(model.otherUserEmail)_profile_picture.png"
         StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
@@ -74,8 +74,8 @@ class ConversationTableViewCell: UITableViewCell {
     }
     
     private func giveFrames() {
-        userImageView.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
+        userImageView.frame = CGRect(x: 10, y: 10, width: 70, height: 70)
         userNameLabel.frame = CGRect(x: userImageView.right + 10, y: 10, width: contentView.width - 20 - userImageView.width , height: (contentView.height - 20) / 2)
-        userMessageLabel.frame = CGRect(x: userImageView.right + 10, y: userNameLabel.bottom + 10, width: contentView.width - 20 - userImageView.width , height: (contentView.height - 20) / 2)
+        userMessageLabel.frame = CGRect(x: userImageView.right + 10, y: userNameLabel.bottom, width: contentView.width - 20 - userImageView.width , height: (contentView.height - 20) / 2)
     }
 }

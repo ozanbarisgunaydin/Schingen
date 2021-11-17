@@ -9,7 +9,8 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-class RegisterViewController: UIViewController {
+/// Registiration of the new users to Firebase handled with this controller.
+final class RegisterViewController: UIViewController {
     
     private let spinner = JGProgressHUD(style: .dark)
     
@@ -157,6 +158,10 @@ class RegisterViewController: UIViewController {
                     print("Error creating user register.")
                     return
                 }
+                
+                UserDefaults.standard.set(email, forKey: "email")
+                UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+                
                 let chatUser = SchingenUser(firstName: firstName, lastName: lastName, emailAddress: email)
                 DatabaseManager.shared.insertUser(with: chatUser, completion: { succes in
                     if succes {
@@ -176,7 +181,6 @@ class RegisterViewController: UIViewController {
                         })
                     }
                 })
-                
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             })
         })
