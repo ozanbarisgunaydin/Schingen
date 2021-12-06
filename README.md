@@ -10,3 +10,5 @@ Firebase, Facebook Login, Google Login, MessageKit, JGProgressHUD, RealmSwift an
 
 
 PS: After the bug fixing and design maintenances the screenshots will add.
+
+![alt-text](https://github.com/ozanbarisgunaydin/Schingen/blob/main/Schingen_Messaging_Demo.gif)
